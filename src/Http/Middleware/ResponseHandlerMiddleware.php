@@ -1,6 +1,6 @@
 <?php
 
-namespace Tustin\Haste\Http;
+namespace Tustin\Haste\Http\Middleware;
 
 use Tustin\Haste\Http\ResponseParser;
 

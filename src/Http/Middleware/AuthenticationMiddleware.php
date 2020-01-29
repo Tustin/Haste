@@ -1,12 +1,12 @@
 <?php
 
-namespace Tustin\Haste\Http;
+namespace Tustin\Haste\Http\Middleware;
 
 use GuzzleHttp\Psr7\Request;
 
 final class AuthenticationMiddleware
 {
-    private $authenticationItems = [];
+    private array $authenticationItems = [];
 
     /**
      * Creates the authentication middleware.
