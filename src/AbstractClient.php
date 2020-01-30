@@ -3,8 +3,9 @@
 namespace Tustin\Haste;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 
+use GuzzleHttp\HandlerStack;
 use Tustin\Haste\Http\HttpClient;
 use Tustin\Haste\Http\Middleware\AuthenticationMiddleware;
 use Tustin\Haste\Http\Middleware\ResponseHandlerMiddleware;

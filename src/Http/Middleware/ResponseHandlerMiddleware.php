@@ -2,15 +2,16 @@
 
 namespace Tustin\Haste\Http\Middleware;
 
-use Tustin\Haste\Http\ResponseParser;
+use GuzzleHttp\Psr7\Response;
 
+use Tustin\Haste\Http\JsonStream;
+use Psr\Http\Message\StreamInterface;
+use Tustin\Haste\Http\ResponseParser;
 use Tustin\Haste\Exception\ApiException;
-use Tustin\Haste\Exception\UnauthorizedException;
 use Tustin\Haste\Exception\NotFoundException;
 use Tustin\Haste\Exception\AccessDeniedException;
+use Tustin\Haste\Exception\UnauthorizedException;
 use Tustin\Haste\Exception\UnsupportedMediaTypeException;
-
-use GuzzleHttp\Psr7\Response;
 
 final class ResponseHandlerMiddleware
 {
