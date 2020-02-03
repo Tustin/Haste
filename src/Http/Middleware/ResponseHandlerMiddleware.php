@@ -6,12 +6,11 @@ use GuzzleHttp\Psr7\Response;
 
 use Tustin\Haste\Http\JsonStream;
 use Psr\Http\Message\StreamInterface;
-use Tustin\Haste\Http\ResponseParser;
 use Tustin\Haste\Exception\ApiException;
-use Tustin\Haste\Exception\NotFoundException;
-use Tustin\Haste\Exception\AccessDeniedException;
-use Tustin\Haste\Exception\UnauthorizedException;
-use Tustin\Haste\Exception\UnsupportedMediaTypeException;
+use Tustin\Haste\Exception\NotFoundHttpException;
+use Tustin\Haste\Exception\AccessDeniedHttpException;
+use Tustin\Haste\Exception\UnauthorizedHttpException;
+use Tustin\Haste\Exception\UnsupportedMediaTypeHttpException;
 
 final class ResponseHandlerMiddleware
 {
@@ -57,13 +56,13 @@ final class ResponseHandlerMiddleware
             case 400:
                 throw new ApiException($stream);
             case 401:
-                throw new UnauthorizedException;
+                throw new UnauthorizedHttpException;
             case 403:
-                throw new AccessDeniedException;
+                throw new AccessDeniedHttpException;
             case 404:
-                throw new NotFoundException;
+                throw new NotFoundHttpException;
             case 415:
-                throw new UnsupportedMediaTypeException;
+                throw new UnsupportedMediaTypeHttpException;
         }
     }
 }

@@ -24,7 +24,11 @@ abstract class HttpClient
      */
     public function get(string $path = '', array $body = [], array $headers = []) : ?object
     {
+        // $path .= (strpos($path, '?') === false) ? '?' : '&';
+        // $path .= http_build_query($body);
+
         return ($this->lastResponse = $this->httpClient->get($path, [
+            'query' => $body,
             'headers' => $headers
         ]))->getBody()->jsonSerialize();
     }

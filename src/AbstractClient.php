@@ -35,17 +35,6 @@ abstract class AbstractClient extends HttpClient
     }
 
     /**
-     * Creates a new instance of the AbstractClient.
-     *
-     * @param array $guzzleOptions
-     * @return AbstractClient
-     */
-    public static final function create(array $guzzleOptions = []) : AbstractClient
-    {
-        return new static($guzzleOptions);
-    }
-
-    /**
      * Gets the HandlerStack for the Guzzle client.
      * 
      * Will create one if it does not exist.
