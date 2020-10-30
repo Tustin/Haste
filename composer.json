@@ -3,8 +3,8 @@
     "description": "HTTP library for my API library projects",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^6.5",
-        "php": "^7.4"
+        "guzzlehttp/guzzle": "^7.0",
+        "php": "^7.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"
