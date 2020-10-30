@@ -200,7 +200,7 @@ abstract class HttpClient
      *
      * @return Response|null
      */
-    public function lastResponse() : ?Response
+    public function getLastResponse() : ?Response
     {
         return $this->lastResponse;
     }
