@@ -38,7 +38,7 @@ final class ResponseHandlerMiddleware
      * @param Response $response
      * @return bool
      */
-    public function isSuccessful(Response $response) : bool
+    public function isSuccessful(Response $response): bool
     {
         return $response->getStatusCode() < 400;
     }
@@ -49,10 +49,9 @@ final class ResponseHandlerMiddleware
      * @param Response $response
      * @return void
      */
-    public function handleErrorResponse(Response $response, StreamInterface $stream) : void
+    public function handleErrorResponse(Response $response, StreamInterface $stream): void
     {
-        switch ($response->getStatusCode())
-        {
+        switch ($response->getStatusCode()) {
             case 400:
                 throw new ApiException($stream);
             case 401:

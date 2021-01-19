@@ -26,9 +26,9 @@ abstract class HttpClient
      * @param string $path
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function get(string $path = '', array $body = [], array $headers = []) : ?object
+    public function get(string $path = '', array $body = [], array $headers = [])
     {
         // $path .= (strpos($path, '?') === false) ? '?' : '&';
         // $path .= http_build_query($body);
@@ -45,9 +45,9 @@ abstract class HttpClient
      * @param string $path
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function post(string $path, array $body, array $headers = []) : ?object
+    public function post(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->post($path, [
             'form_params' => $body,
@@ -61,9 +61,9 @@ abstract class HttpClient
      * @param string $path
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function postJson(string $path, array $body, array $headers = []) : ?object
+    public function postJson(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->post($path, [
             'json' => $body,
@@ -77,9 +77,9 @@ abstract class HttpClient
      * @param string $path
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function postMultiPart(string $path, array $body, array $headers = []) : ?object
+    public function postMultiPart(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->post($path, [
             'multipart' => $body,
@@ -92,9 +92,9 @@ abstract class HttpClient
      *
      * @param string $path
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function delete(string $path, array $headers = []) : ?object
+    public function delete(string $path, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->delete($path, [
             'headers' => $headers
@@ -107,9 +107,9 @@ abstract class HttpClient
      * @param string $path
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function deleteJson(string $path, array $body, array $headers = []) : ?object
+    public function deleteJson(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->delete($path, [
             'json' => $body,
@@ -122,9 +122,9 @@ abstract class HttpClient
      *
      * @param string $path
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function patch(string $path, array $headers = []) : ?object
+    public function patch(string $path, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->patch($path, [
             'headers' => $headers
@@ -137,9 +137,9 @@ abstract class HttpClient
      * @param string $path
      * @param array $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function put(string $path, array $body = null, array $headers = []) : ?object
+    public function put(string $path, array $body = null, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'form_params' => $body,
@@ -153,9 +153,9 @@ abstract class HttpClient
      * @param string $path
      * @param [type] $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function putJson(string $path, $body = null, array $headers = []) : ?object
+    public function putJson(string $path, $body = null, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'json' => $body,
@@ -169,9 +169,9 @@ abstract class HttpClient
      * @param string $path
      * @param string $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function putFile(string $path, string $body = null, array $headers = []) : ?object
+    public function putFile(string $path, string $body = null, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'body' => $body,
@@ -185,9 +185,9 @@ abstract class HttpClient
      * @param string $path
      * @param [type] $body
      * @param array $headers
-     * @return object|null
+     * @return mixed
      */
-    public function putMultiPart(string $path, array $body = null, array $headers = []) : ?object
+    public function putMultiPart(string $path, array $body = null, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'multipart' => $body,
@@ -200,7 +200,7 @@ abstract class HttpClient
      *
      * @return Response|null
      */
-    public function getLastResponse() : ?Response
+    public function getLastResponse(): ?Response
     {
         return $this->lastResponse;
     }
