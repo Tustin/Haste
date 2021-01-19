@@ -3,17 +3,18 @@
 namespace Tustin\Haste\Http;
 
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Message\Request;
-use Tustin\Haste\Http\JsonStream;
-
-use GuzzleHttp\Client as GuzzleClient;
 
 abstract class HttpClient
 {
+    /**
+     * @var Client
+     */
     protected $httpClient;
 
-    private Response $lastResponse;
+    /**
+     * @var Response
+     */
+    private $lastResponse;
 
     public function getHttpClient()
     {

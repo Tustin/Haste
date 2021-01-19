@@ -45,8 +45,13 @@ abstract class AbstractClient extends HttpClient
      */
     protected final function getHandler()
     {
-        $config  = $this->httpClient->getConfig();
-        return $config['handler'] ??= HandlerStack::create();
+        $config = $this->httpClient->getConfig();
+
+        if (is_null($config['handler'])) {
+            $config['handler'] = HandlerStack::create();
+        }
+
+        return $config['handler'];
     }
 
     /**
