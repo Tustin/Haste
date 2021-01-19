@@ -21,7 +21,7 @@ final class ResponseHandlerMiddleware
      * @param array $options
      * @return void
      */
-    public function __invoke(Response $response, array $options = [])
+    public function __invoke($response, $options = [])
     {
         $jsonStream = new JsonStream($response->getBody());
 
@@ -38,7 +38,7 @@ final class ResponseHandlerMiddleware
      * @param Response $response
      * @return bool
      */
-    public function isSuccessful(Response $response): bool
+    public function isSuccessful($response)
     {
         return $response->getStatusCode() < 400;
     }
@@ -47,9 +47,10 @@ final class ResponseHandlerMiddleware
      * Handles unsuccessful error codes by throwing the proper exception.
      *
      * @param Response $response
+     * @param StreamInterface $stream
      * @return void
      */
-    public function handleErrorResponse(Response $response, StreamInterface $stream): void
+    public function handleErrorResponse($response, $stream)
     {
         switch ($response->getStatusCode()) {
             case 400:

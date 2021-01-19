@@ -6,14 +6,17 @@ use GuzzleHttp\Psr7\Request;
 
 final class AuthenticationMiddleware
 {
-    private array $authenticationItems = [];
+    /**
+     * @var array
+     */
+    private $authenticationItems = [];
 
     /**
      * Creates the authentication middleware.
      *
      * @param array $authenticationItems
      */
-    public function __construct(array $authenticationItems)
+    public function __construct($authenticationItems)
     {
         $this->authenticationItems = $authenticationItems;
     }
@@ -23,12 +26,11 @@ final class AuthenticationMiddleware
      *
      * @param Request $request
      * @param array $options
-     * @return void
+     * @return Request
      */
-    public function __invoke(Request $request, array $options = [])
+    public function __invoke($request, $options = [])
     {
-        foreach ($this->authenticationItems as $key => $value)
-        {
+        foreach ($this->authenticationItems as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
