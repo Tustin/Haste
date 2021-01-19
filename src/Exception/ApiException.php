@@ -7,7 +7,10 @@ use Psr\Http\Message\StreamInterface;
 
 class ApiException extends \Exception
 {
-    public function __construct(StreamInterface $stream)
+    /**
+     * @param StreamInterface $stream
+     */
+    public function __construct($stream)
     {
         // @TODO
     }
