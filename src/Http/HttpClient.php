@@ -2,21 +2,21 @@
 
 namespace Tustin\Haste\Http;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 
 abstract class HttpClient
 {
-    /**
-     * @var Client
-     */
     protected $httpClient;
 
-    /**
-     * @var Response
-     */
-    private $lastResponse;
+    private Response $lastResponse;
 
-    public function getHttpClient()
+    /**
+     * Gets the Guzzle HTTP client.
+     *
+     * @return void
+     */
+    public function getHttpClient(): Client
     {
         return $this->httpClient;
     }
@@ -29,7 +29,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function get($path = '', $body = [], $headers = [])
+    public function get(string $path = '', array $body = [], array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->get($path, [
             'query' => $body,
@@ -45,7 +45,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function post($path, $body, $headers = [])
+    public function post(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->post($path, [
             'form_params' => $body,
@@ -61,7 +61,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function postJson($path, $body, $headers = [])
+    public function postJson(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->post($path, [
             'json' => $body,
@@ -77,7 +77,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function postMultiPart($path, $body, $headers = [])
+    public function postMultiPart(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->post($path, [
             'multipart' => $body,
@@ -92,7 +92,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function delete($path, $headers = [])
+    public function delete(string $path, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->delete($path, [
             'headers' => $headers
@@ -107,7 +107,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function deleteJson($path, $body, $headers = [])
+    public function deleteJson(string $path, array $body, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->delete($path, [
             'json' => $body,
@@ -122,7 +122,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function patch($path, $headers = [])
+    public function patch(string $path, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->patch($path, [
             'headers' => $headers
@@ -137,7 +137,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function put($path, $body = null, $headers = [])
+    public function put(string $path, $body = null, $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'form_params' => $body,
@@ -153,7 +153,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function putJson($path, $body = null, $headers = [])
+    public function putJson(string $path, $body = null, $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'json' => $body,
@@ -169,7 +169,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function putFile($path, $body = null, $headers = [])
+    public function putFile(string $path, $body = null, $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'body' => $body,
@@ -185,7 +185,7 @@ abstract class HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function putMultiPart($path, $body = null, $headers = [])
+    public function putMultiPart(string $path, $body = null, array $headers = [])
     {
         return ($this->lastResponse = $this->httpClient->put($path, [
             'multipart' => $body,
@@ -194,11 +194,26 @@ abstract class HttpClient
     }
 
     /**
+     * Streams a file.
+     *
+     * @param string $path
+     * @param array $headers
+     * @return void
+     */
+    public function stream(string $path, array $headers = []): string
+    {
+        return ($this->lastResponse = $this->httpClient->get($path, [
+            'headers' => $headers,
+            'stream' => true
+        ]))->getBody();
+    }
+
+    /**
      * Returns the last response that was received.
      *
      * @return Response|null
      */
-    public function getLastResponse()
+    public function getLastResponse(): ?Response
     {
         return $this->lastResponse;
     }

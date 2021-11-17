@@ -9,14 +9,14 @@ final class AuthenticationMiddleware
     /**
      * @var array
      */
-    private $authenticationItems = [];
+    private array $authenticationItems = [];
 
     /**
      * Creates the authentication middleware.
      *
      * @param array $authenticationItems
      */
-    public function __construct($authenticationItems)
+    public function __construct(array $authenticationItems)
     {
         $this->authenticationItems = $authenticationItems;
     }
@@ -28,7 +28,7 @@ final class AuthenticationMiddleware
      * @param array $options
      * @return Request
      */
-    public function __invoke($request, $options = [])
+    public function __invoke(Request $request, array $options = []): Request
     {
         foreach ($this->authenticationItems as $key => $value) {
             $request = $request->withHeader($key, $value);

@@ -12,7 +12,14 @@ class JsonStream implements StreamInterface, JsonSerializable
 {
     use StreamDecoratorTrait;
 
-    public function jsonSerialize()
+    /**
+     * Serializes a response body to JSON.
+     * 
+     * @throws RuntimeException
+     *
+     * @return object|null
+     */
+    public function jsonSerialize(): ?object
     {
         $contents = (string) $this->getContents();
 

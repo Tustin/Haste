@@ -12,10 +12,7 @@ use Tustin\Haste\Http\Middleware\ResponseHandlerMiddleware;
 
 abstract class AbstractClient extends HttpClient
 {
-    /**
-     * @var array
-     */
-    protected $guzzleOptions;
+    protected array $guzzleOptions;
 
     public function __construct($guzzleOptions = [])
     {
@@ -43,7 +40,7 @@ abstract class AbstractClient extends HttpClient
      *
      * @return HandlerStack
      */
-    protected final function getHandler()
+    protected final function getHandler(): HandlerStack
     {
         $config = $this->httpClient->getConfig();
 
@@ -60,7 +57,7 @@ abstract class AbstractClient extends HttpClient
      * @param AuthenticationMiddleware $middleware
      * @return void
      */
-    protected final function pushAuthenticationMiddleware($middleware)
+    protected final function pushAuthenticationMiddleware(AuthenticationMiddleware $middleware): void
     {
         $handler = $this->getHandler();
         $handler->push(
