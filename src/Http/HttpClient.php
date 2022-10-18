@@ -14,7 +14,7 @@ abstract class HttpClient
     /**
      * Gets the Guzzle HTTP client.
      *
-     * @return void
+     * @return Client
      */
     public function getHttpClient(): Client
     {
