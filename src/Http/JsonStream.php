@@ -11,6 +11,8 @@ use GuzzleHttp\Psr7\StreamDecoratorTrait;
 class JsonStream implements StreamInterface, JsonSerializable
 {
     use StreamDecoratorTrait;
+    
+    public StreamInterface $stream;
 
     /**
      * Serializes a response body to JSON.
